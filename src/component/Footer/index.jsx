@@ -44,7 +44,7 @@ const Footer = () => {
               transition={{ duration: 0.3 }}
             >
               <Brain className="text-red-600" size={28} />
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-violet-700 to-red-500 bg-clip-text text-transparent">HeartSathi</h3>
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-red-700 to-red-500 bg-clip-text text-transparent">HeartSathi</h3>
             </motion.div>
             <p className="text-gray-600 leading-relaxed text-lg">
               Transforming mental wellness through AI-driven technology and personalized care.
@@ -72,7 +72,7 @@ const Footer = () => {
             className="pt-4"
           >
             <h3 className="text-xl font-semibold mb-6 text-gray-800 flex items-center gap-2"> 
-              <ExternalLink size={22} className="text-violet-600" />
+              <ExternalLink size={22} className="text-red-600" />
               Quick Links
             </h3>
             <ul className="space-y-4">
@@ -85,11 +85,11 @@ const Footer = () => {
                 >
                   <motion.a 
                     href={link.href}
-                    className="text-gray-600 hover:text-violet-700 flex items-center gap-2 group text-lg"
+                    className="text-gray-600 hover:text-red-700 flex items-center gap-2 group text-lg"
                     whileHover={{ x: 10 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <ChevronRight size={18} className="text-violet-400 group-hover:translate-x-1 transition-transform duration-200" />
+                    <ChevronRight size={18} className="text-red-400 group-hover:translate-x-1 transition-transform duration-200" />
                     {link.name}
                   </motion.a>
                 </motion.li>
@@ -106,7 +106,7 @@ const Footer = () => {
             className="pt-4"
           >
             <h3 className="text-xl font-semibold mb-6 text-gray-800 flex items-center gap-2"> 
-              <Shield size={22} className="text-violet-600" />
+              <Shield size={22} className="text-red-600" />
               Our Services
             </h3>
             <ul className="space-y-4"> 
@@ -119,7 +119,7 @@ const Footer = () => {
                 >
                   <motion.a 
                     href="/services"
-                    className="text-gray-600 hover:text-violet-700 flex items-center gap-2 group text-lg"
+                    className="text-gray-600 hover:text-red-700 flex items-center gap-2 group text-lg"
                     whileHover={{ x: 10 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -140,7 +140,7 @@ const Footer = () => {
             className="pt-4"
           >
             <h3 className="text-xl font-semibold mb-6 text-red-800 flex items-center gap-2"> 
-              <Mail size={22} className="text-violet-600" />
+              <Mail size={22} className="text-red-600" />
               Contact Us
             </h3>
             <div className="space-y-4"> 
@@ -159,7 +159,7 @@ const Footer = () => {
                     className="p-2.5 bg-violet-100 rounded-xl group-hover:bg-violet-200 transition-colors duration-200"
                     whileHover={{ scale: 1.1 }}
                   >
-                    <item.Icon size={20} className="text-violet-600" />
+                    <item.Icon size={20} className="text-red-600" />
                   </motion.div>
                   <span className="text-gray-600 text-lg">{item.text}</span>
                 </motion.div>
@@ -182,7 +182,7 @@ const Footer = () => {
               whileHover={{ scale: 1.05 }}
             >
               <Shield size={18} className="text-red-600" />
-              © 2025 Heath Sathi AI. All rights reserved.
+              © 2025 Heart Sathi AI. All rights reserved.
             </motion.div>
             <div className="flex flex-wrap justify-center gap-8">
               {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((policy, index) => (
