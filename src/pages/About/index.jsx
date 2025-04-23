@@ -141,7 +141,7 @@ const CountUp = ({ end }) => {
     {
       icon: Brain,
       title: "Random Forest Classifier",
-      description: "Advanced machine learning model using ensemble methods for highly accurate mental health predictions."
+      description: "Advanced machine learning model using ensemble methods for highly accurate Heart health predictions."
     },
     {
       icon: Code,
@@ -151,7 +151,7 @@ const CountUp = ({ end }) => {
     {
       icon: Activity,
       title: "Real-time Analysis",
-      description: "Instant mental health assessments with advanced data preprocessing and standardization."
+      description: "Instant Heart health assessments with advanced data preprocessing and standardization."
     },
     {
       icon: Shield,
@@ -224,7 +224,7 @@ const CountUp = ({ end }) => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            Using advanced machine learning and data analytics to revolutionize mental health assessment 
+            Using advanced machine learning and data analytics to revolutionize Heart health assessment 
             and support with our AI-powered prediction system.
           </motion.p>
         </motion.div>
@@ -267,7 +267,7 @@ const CountUp = ({ end }) => {
             className="text-gray-600 text-center mb-12 max-w-2xl mx-auto"
             variants={fadeInUp}
           >
-            Leveraging cutting-edge technology to provide comprehensive mental health analysis and support.
+            Leveraging cutting-edge technology to provide comprehensive Heart health analysis and support.
           </motion.p>
           <motion.div 
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
@@ -276,17 +276,17 @@ const CountUp = ({ end }) => {
             <AboutSection 
               icon={Brain}
               title="AI Analysis"
-              content="State-of-the-art machine learning algorithms for accurate mental health predictions."
+              content="State-of-the-art machine learning algorithms for accurate Heart health predictions."
             />
             <AboutSection 
               icon={BarChart}
               title="Data Insights"
-              content="Advanced analytics providing deep understanding of mental health patterns."
+              content="Advanced analytics providing deep understanding of Heart health patterns."
             />
             <AboutSection 
               icon={Heart}
               title="Personalized Care"
-              content="Tailored recommendations based on individual mental health profiles."
+              content="Tailored recommendations based on individual Heart health profiles."
             />
             <AboutSection 
               icon={ScrollText}
@@ -331,7 +331,7 @@ const CountUp = ({ end }) => {
               className="text-gray-600 text-center mb-12 max-w-2xl mx-auto"
               variants={fadeInUp}
             >
-              Expert professionals dedicated to advancing mental health technology.
+              Expert professionals dedicated to advancing Heart health technology.
             </motion.p>
             <motion.div
               className="grid md:grid-cols-2 lg:grid-cols-5 gap-8"
@@ -356,7 +356,7 @@ const CountUp = ({ end }) => {
             className="text-gray-600 text-center mb-12 max-w-2xl mx-auto"
             variants={fadeInUp}
           >
-            Have questions about our mental health prediction system? We're here to help.
+            Have questions about our Heart health prediction system? We're here to help.
           </motion.p>
           <motion.div 
             className="grid md:grid-cols-3 gap-6"
@@ -395,10 +395,8 @@ const CountUp = ({ end }) => {
             className="text-gray-700 max-w-3xl mx-auto text-lg leading-relaxed"
             variants={fadeInUp}
           >
-            We're committed to making mental health assessment more accessible and accurate through 
-            innovative technology. Our AI-powered system combines clinical expertise with advanced 
-            machine learning to provide reliable mental health predictions and support, ensuring 
-            everyone has access to the care they need.
+         <h1>Make Heart Health Simple with HeartSathi</h1>
+
           </motion.p>
         </motion.div>
       </motion.div>

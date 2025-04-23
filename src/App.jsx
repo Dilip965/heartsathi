@@ -5,6 +5,7 @@ import Footer from "./component/Footer";
 import AboutUs  from "./pages/About";
 import NotFoundPage from "./pages/Notfound";
 import FloatingButtons from "./component/whatsappflotating";
+import Videocall from "./pages/videocall/index";
 function App(){
 return(
 
@@ -16,7 +17,8 @@ return(
       <Routes>
        
         <Route path="/" element={<Home />} /> 
-        <Route path="/about" element={<AboutUs />} /> 
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/videocall" element={<Videocall />} /> 
         <Route path="*" element={<NotFoundPage />} />
 
 
