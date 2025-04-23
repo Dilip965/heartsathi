@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import heroImage from '../../assets/photo/branding1.png'; // Replace with your actual image path
+import heroImage from '../../assets/photo/branding2.png'; // Replace with your actual image path
 
 function Home() {
   return (
