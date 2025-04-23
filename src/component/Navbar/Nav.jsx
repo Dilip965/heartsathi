@@ -18,7 +18,9 @@ function Navbar() {
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <NavLink to="/" className="flex items-center">
+      
             <img src={logo} alt="Logo" className="h-10 w-auto rounded-md mr-2" />
+            <h1 className='text-lg text-red-500'>Heart Sathi</h1>
           </NavLink>
 
           {/* Hamburger */}

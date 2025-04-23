@@ -17,7 +17,7 @@ const Footer = () => {
 
   return (
     <motion.footer 
-      className="bg-gradient-to-b from-purple-100/50 to-white pt-16 pb-8 px-4 sm:px-6 lg:px-8" 
+      className="bg-gradient-to-b from-red-100/50 to-white pt-16 pb-8 px-4 sm:px-6 lg:px-8" 
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
@@ -43,8 +43,8 @@ const Footer = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <Brain className="text-violet-600" size={28} />
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-violet-700 to-violet-500 bg-clip-text text-transparent">MindGuard AI</h3>
+              <Brain className="text-red-600" size={28} />
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-violet-700 to-red-500 bg-clip-text text-transparent">HeartSathi</h3>
             </motion.div>
             <p className="text-gray-600 leading-relaxed text-lg">
               Transforming mental wellness through AI-driven technology and personalized care.
@@ -139,14 +139,14 @@ const Footer = () => {
             transition={{ duration: 0.5, delay: 0.6 }}
             className="pt-4"
           >
-            <h3 className="text-xl font-semibold mb-6 text-gray-800 flex items-center gap-2"> 
+            <h3 className="text-xl font-semibold mb-6 text-red-800 flex items-center gap-2"> 
               <Mail size={22} className="text-violet-600" />
               Contact Us
             </h3>
             <div className="space-y-4"> 
               {[
-                { Icon: Phone, text: '+91 9284675626' },
-                { Icon: Mail, text: 'mindguardaimental@gmail.com' },
+                { Icon: Phone, text: '+91 9022504359' },
+                { Icon: Mail, text: 'heartsathi@gmail.com' },
                 { Icon: Clock, text: '24/7 Support Available' }
               ].map((item, index) => (
                 <motion.div 
@@ -181,8 +181,8 @@ const Footer = () => {
               className="text-gray-600 text-base flex items-center gap-2"
               whileHover={{ scale: 1.05 }}
             >
-              <Shield size={18} className="text-violet-600" />
-              © 2025 MindGuard AI. All rights reserved.
+              <Shield size={18} className="text-red-600" />
+              © 2025 Heath Sathi AI. All rights reserved.
             </motion.div>
             <div className="flex flex-wrap justify-center gap-8">
               {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((policy, index) => (
