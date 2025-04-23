@@ -9,7 +9,9 @@ function Navbar() {
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Prediction", path: "/prediction" },
-    { name: "Contact", path: "/contact" },
+    {name:"Meeting",path:"/videocall"},
+    { name: "Contact", path: "/contact" }
+
   ];
 
   return (
