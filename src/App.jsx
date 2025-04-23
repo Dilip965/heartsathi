@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from "./component/Footer";
 import AboutUs  from "./pages/About";
 import NotFoundPage from "./pages/Notfound";
-
+import FloatingButtons from "./component/whatsappflotating";
 function App(){
 return(
 
@@ -21,6 +21,7 @@ return(
 
 
       </Routes>
+    <FloatingButtons/>
       <Footer/>
     </Router>
 
