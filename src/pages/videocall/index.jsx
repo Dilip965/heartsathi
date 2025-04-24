@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
 import Peer from 'simple-peer';
@@ -631,49 +629,49 @@ const PeerVideo = ({ peer, userName, peerId }) => {
   const [hasVideo, setHasVideo] = useState(false);
   const [isConnected, setIsConnected] = useState(false);
   const [errorState, setErrorState] = useState(null);
-  
+
   useEffect(() => {
     if (!peer) return;
-    
+
     console.log(`Setting up video for peer: ${userName} (${peerId})`);
-    
+
     // Function to handle incoming stream
     const handleStream = (stream) => {
       console.log(`Received stream from: ${userName} (${peerId})`);
-      
+
       // Check if the stream has video tracks
       const hasVideoTracks = stream.getVideoTracks().length > 0;
       setHasVideo(hasVideoTracks);
-      
+
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
       }
     };
-    
+
     // Add event listeners
     peer.on('stream', handleStream);
-    
+
     peer.on('connect', () => {
       console.log(`Connected to peer: ${userName} (${peerId})`);
       setIsConnected(true);
       setErrorState(null);
     });
-    
+
     peer.on('error', (err) => {
       console.error(`Error with peer ${userName} (${peerId}):`, err);
       setErrorState(err.message);
     });
-    
+
     peer.on('close', () => {
       console.log(`Connection closed with peer: ${userName} (${peerId})`);
       setIsConnected(false);
     });
-    
+
     // Check if stream is already available
     if (peer.streams && peer.streams[0]) {
       handleStream(peer.streams[0]);
     }
-    
+
     return () => {
       // Clean up if needed
       if (videoRef.current) {
@@ -681,7 +679,7 @@ const PeerVideo = ({ peer, userName, peerId }) => {
       }
     };
   }, [peer, userName, peerId]);
-  
+
   return (
     <div className="relative bg-black rounded-lg overflow-hidden aspect-video">
       <video
