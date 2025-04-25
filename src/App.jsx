@@ -8,7 +8,11 @@ import FloatingButtons from "./component/whatsappflotating";
 import ChatApp from "./pages/videocall";
 import Knowledge from "./pages/knowledge";
 import Treatment from "./pages/treatmennt/index";
+import Prediction from "./pages/Prediction";
+import TestDetails from "./pages/testdetail";
+import ContactUs from "./pages/Contact";
 function App(){
+
 return(
 
   <>
@@ -23,6 +27,9 @@ return(
         <Route path="/chat" element={<ChatApp />} /> 
         <Route path="/knowledge" element={<Knowledge />} /> 
         <Route path="/treatment" element={<Treatment/>}/>
+        <Route path="/prediction" element={<Prediction/>}/>
+        <Route path="/test" element={<TestDetails/>}/>
+        <Route path="/contact" element ={<ContactUs/>}/>
         
         <Route path="*" element={<NotFoundPage />} />
 

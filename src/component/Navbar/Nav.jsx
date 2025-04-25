@@ -14,6 +14,7 @@ function Navbar() {
     {name:"Chat",path:"/chat"},
     { name: "Contact", path: "/contact" },
     
+    
 
 
   ];
