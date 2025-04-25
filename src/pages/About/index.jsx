@@ -365,17 +365,17 @@ const CountUp = ({ end }) => {
             <ContactInfo 
               icon={Mail}
               title="Email Us"
-              content="mayurdhamgunde@gmail.com"
+              content="heartsathi@gmail.com"
             />
             <ContactInfo 
               icon={Phone}
               title="Call Us"
-              content="+91 9284675626"
+              content="+91 9022504359"
             />
             <ContactInfo 
               icon={MapPin}
               title="Visit Us"
-              content="Innovation Drive, Tech City Solapur, Maharashtra, India"
+              content=" HeartSathi at Solapur  "
             />
           </motion.div>
         </motion.div>

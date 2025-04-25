@@ -1,102 +1,66 @@
-import React, { useState, useEffect, useRef } from 'react';
+// frontend/Chat.js
+import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 
-const socket = io('https://heartdiseasebackend.onrender.com');
+// The two users' IDs for demo purposes
+const USER_ID_1 = 'user1';
+const USER_ID_2 = 'user2';
 
-const ChatApp = () => {
-  const [currentUser, setCurrentUser] = useState('user1');
-  const [receiver, setReceiver] = useState('user2');
+const socket = io('http://localhost:5000'); // Backend server URL
+
+const Chat = () => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const bottomRef = useRef(null);
+  const [currentUser, setCurrentUser] = useState(USER_ID_1);
 
   useEffect(() => {
+    // Join the room for the current user
     socket.emit('join', currentUser);
-  }, [currentUser]);
 
-  useEffect(() => {
+    // Listen for incoming messages
     socket.on('receive_message', (data) => {
-      setMessages((prev) => [...prev, data]);
+      setMessages((prevMessages) => [...prevMessages, data]);
     });
 
-    return () => socket.off('receive_message');
-  }, []);
+    // Cleanup on component unmount
+    return () => {
+      socket.off('receive_message');
+    };
+  }, [currentUser]);
 
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
-
+  // Send message function
   const sendMessage = () => {
-    if (!message.trim()) return;
-    const data = { senderId: currentUser, receiverId: receiver, message };
-    socket.emit('send_message', data);
-    setMessages((prev) => [...prev, data]);
-    setMessage('');
-  };
-
-  const switchUser = () => {
-    const newUser = currentUser === 'user1' ? 'user2' : 'user1';
-    const newReceiver = currentUser;
-    setCurrentUser(newUser);
-    setReceiver(newReceiver);
-    setMessages([]);
-    socket.emit('join', newUser);
+    if (message.trim()) {
+      const receiverId = currentUser === USER_ID_1 ? USER_ID_2 : USER_ID_1;
+      const messageData = { senderId: currentUser, receiverId, message };
+      socket.emit('send_message', messageData);
+      setMessages((prevMessages) => [...prevMessages, messageData]);
+      setMessage('');
+    }
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6 bg-white shadow-xl rounded-xl">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold">Chat as: {currentUser}</h2>
-        <button
-          className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded"
-          onClick={switchUser}
-        >
-          Switch to {receiver}
-        </button>
-      </div>
-
-      <div className="h-80 overflow-y-auto space-y-2 p-4 border rounded-lg bg-gray-50">
-        {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={`flex ${
-              msg.senderId === currentUser ? 'justify-end' : 'justify-start'
-            }`}
-          >
-            <div
-              className={`px-4 py-2 rounded-lg max-w-xs text-sm ${
-                msg.senderId === currentUser
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-300 text-gray-900'
-              }`}
-            >
-              <div className="font-semibold text-xs mb-1">
-                {msg.senderId}
-              </div>
-              <div>{msg.message}</div>
+    <div>
+      <h1>Chat between User 1 and User 2</h1>
+      <div>
+        <h3>{currentUser === USER_ID_1 ? 'User 1' : 'User 2'}'s Chat</h3>
+        <div>
+          {messages.map((msg, index) => (
+            <div key={index}>
+              <strong>{msg.senderId}: </strong>{msg.message}
             </div>
-          </div>
-        ))}
-        <div ref={bottomRef} />
-      </div>
-
-      <div className="flex mt-4">
+          ))}
+        </div>
         <input
           type="text"
-          className="flex-1 border border-gray-300 p-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder="Type your message..."
+          placeholder="Type a message"
         />
-        <button
-          onClick={sendMessage}
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-r-lg"
-        >
-          Send
-        </button>
+        <button onClick={sendMessage}>Send</button>
       </div>
     </div>
   );
 };
 
-export default ChatApp;
+export default Chat;
