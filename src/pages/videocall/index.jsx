@@ -1,48 +1,39 @@
-// src/ChatApp.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
 
-const socket = io('https://heartdiseasebackend.onrender.com/');
+const socket = io('https://heartdiseasebackend.onrender.com');
 
 const ChatApp = () => {
-  const [currentUser, setCurrentUser] = useState('user1'); // user1 or user2
-  const [receiver, setReceiver] = useState('user2');       // opposite of current user
+  const [currentUser, setCurrentUser] = useState('user1');
+  const [receiver, setReceiver] = useState('user2');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+  const bottomRef = useRef(null);
 
-  // Join room on mount
   useEffect(() => {
     socket.emit('join', currentUser);
   }, [currentUser]);
 
-  // Listen for messages
   useEffect(() => {
     socket.on('receive_message', (data) => {
       setMessages((prev) => [...prev, data]);
     });
 
-    // Cleanup
-    return () => {
-      socket.off('receive_message');
-    };
+    return () => socket.off('receive_message');
   }, []);
 
-  // Send message
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
   const sendMessage = () => {
     if (!message.trim()) return;
-
-    const data = {
-      senderId: currentUser,
-      receiverId: receiver,
-      message,
-    };
-
+    const data = { senderId: currentUser, receiverId: receiver, message };
     socket.emit('send_message', data);
-    setMessages((prev) => [...prev, data]); // also show own message
+    setMessages((prev) => [...prev, data]);
     setMessage('');
   };
 
-  // Switch user
   const switchUser = () => {
     const newUser = currentUser === 'user1' ? 'user2' : 'user1';
     const newReceiver = currentUser;
@@ -53,43 +44,53 @@ const ChatApp = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 border rounded shadow-lg bg-white">
-      <div className="flex justify-between mb-4">
+    <div className="max-w-lg mx-auto p-6 bg-white shadow-xl rounded-xl">
+      <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">Chat as: {currentUser}</h2>
         <button
-          className="bg-blue-500 text-white px-3 py-1 rounded"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded"
           onClick={switchUser}
         >
           Switch to {receiver}
         </button>
       </div>
 
-      <div className="h-64 overflow-y-auto border p-4 mb-4 rounded">
+      <div className="h-80 overflow-y-auto space-y-2 p-4 border rounded-lg bg-gray-50">
         {messages.map((msg, index) => (
           <div
             key={index}
-            className={`mb-2 ${
-              msg.senderId === currentUser
-                ? 'text-right text-blue-600'
-                : 'text-left text-green-600'
+            className={`flex ${
+              msg.senderId === currentUser ? 'justify-end' : 'justify-start'
             }`}
           >
-            <strong>{msg.senderId}:</strong> {msg.message}
+            <div
+              className={`px-4 py-2 rounded-lg max-w-xs text-sm ${
+                msg.senderId === currentUser
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-300 text-gray-900'
+              }`}
+            >
+              <div className="font-semibold text-xs mb-1">
+                {msg.senderId}
+              </div>
+              <div>{msg.message}</div>
+            </div>
           </div>
         ))}
+        <div ref={bottomRef} />
       </div>
 
-      <div className="flex">
+      <div className="flex mt-4">
         <input
           type="text"
-          className="flex-1 border p-2 rounded-l"
+          className="flex-1 border border-gray-300 p-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type your message..."
         />
         <button
-          className="bg-green-500 text-white px-4 py-2 rounded-r"
           onClick={sendMessage}
+          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-r-lg"
         >
           Send
         </button>
