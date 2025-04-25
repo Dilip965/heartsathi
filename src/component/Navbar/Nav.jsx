@@ -9,7 +9,7 @@ function Navbar() {
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Prediction", path: "/prediction" },
-    {name:"Meeting",path:"/videocall"},
+    {name:"Chat",path:"/chat"},
     { name: "Contact", path: "/contact" }
 
   ];
