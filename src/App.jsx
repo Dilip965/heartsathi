@@ -11,6 +11,7 @@ import Treatment from "./pages/treatmennt/index";
 import Prediction from "./pages/Prediction";
 import TestDetails from "./pages/testdetail";
 import ContactUs from "./pages/Contact";
+
 function App(){
 
 return(
@@ -30,6 +31,7 @@ return(
         <Route path="/prediction" element={<Prediction/>}/>
         <Route path="/test" element={<TestDetails/>}/>
         <Route path="/contact" element ={<ContactUs/>}/>
+      
         
         <Route path="*" element={<NotFoundPage />} />
 

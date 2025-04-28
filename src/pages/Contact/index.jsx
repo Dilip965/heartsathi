@@ -1,10 +1,51 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const ContactUs = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const [responseMessage, setResponseMessage] = useState('');
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('https://node-backedn-2gqn.onrender.com/api/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      
+      if (response.ok) {
+        setResponseMessage('Message sent successfully!');
+      } else {
+        setResponseMessage('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      setResponseMessage('Error: ' + error.message);
+    }
+  };
+
   return (
     <div className="bg-gray-100 min-h-screen py-12 px-4">
       {/* Header Section */}
-      <header className="bg-gradient-to-r from-blue-600 -red-100 py-16 text-red-500 shadow-md">
+      <header className="bg-gradient-to-r from-blue-600 to-red-100 py-16 text-red-500 shadow-md">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -23,7 +64,7 @@ const ContactUs = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          <form action="#" method="POST">
+          <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 gap-6">
               <div>
                 <label htmlFor="name" className="block text-lg font-semibold text-gray-700">Full Name</label>
@@ -33,6 +74,8 @@ const ContactUs = () => {
                   name="name"
                   className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Your full name"
+                  value={formData.name}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -45,6 +88,8 @@ const ContactUs = () => {
                   name="email"
                   className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Your email address"
+                  value={formData.email}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -57,6 +102,8 @@ const ContactUs = () => {
                   rows="4"
                   className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Your message or inquiry"
+                  value={formData.message}
+                  onChange={handleChange}
                   required
                 ></textarea>
               </div>
@@ -71,32 +118,11 @@ const ContactUs = () => {
               </div>
             </div>
           </form>
+
+          {/* Response Message */}
+          {responseMessage && <p className="mt-4 text-center text-lg">{responseMessage}</p>}
         </motion.div>
       </section>
-
-     {/* Contact Information Section */}
-{/* Contact Information Section */}
-<section className="mt-16 bg-red-600 py-12 px-6 rounded-lg shadow-lg text-yello">
-  <div className="max-w-3xl mx-auto text-center">
-    <h2 className="text-3xl font-bold">Other Ways to Reach Us</h2>
-    <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div className="flex items-center justify-center space-x-4">
-        <span className="text-4xl">📞</span>
-        <p className="text-lg font-semibold">Phone: <span className="text-black-400">9022504359</span></p>
-      </div>
-      <div className="flex items-center justify-center space-x-4">
-        <span className="text-4xl">📧</span>
-        <p className="text-lg font-semibold">Email: <span className="text-black-400">heartsathi@gmail.com</span></p>
-      </div>
-      <div className="flex items-center justify-center space-x-4">
-        <span className="text-4xl">🏠</span>
-        <p className="text-lg font-semibold">Address: <span className="text-blue-400">Heart Sathi, Solapur</span></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
     </div>
   );
 };

@@ -75,23 +75,7 @@ const TechCard = ({ title, description, icon: Icon }) => {
   );
 };
 
-const TeamMember = ({ name, role, photoUrl }) => (
-  <motion.div
-    className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
-    variants={fadeInUp}
-    whileHover={{ scale: 1.05 }}
-  >
-    <div className="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full">
-      <img 
-        src={photoUrl} 
-        alt={name}
-        className="w-full h-full object-cover"
-      />
-    </div>
-    <h4 className="text-xl font-semibold text-center mb-2">{name}</h4>
-    <p className="text-gray-600 text-center">{role}</p>
-  </motion.div>
-);
+
 
 const ContactInfo = ({ icon: Icon, title, content }) => (
   <motion.div 
@@ -160,33 +144,7 @@ const CountUp = ({ end }) => {
     }
   ];
 
-  const teamMembers = [
-    { 
-      name: "Pranita Tathe", 
-      role: "ML Engineer",
-      photoUrl: "/suhas.jpg",
-    },
-    { 
-      name: "Sonali Patil", 
-      role: "FullStack Developer",
-      photoUrl: "/me.jpg"  
-    },
-    { 
-      name: "Shivani Patil", 
-      role: "Integration Developer",
-      photoUrl: "/vivek.jpg"
-    },
-    { 
-      name: "Dilip Nandiwale", 
-      role: "UI & UX Designer",
-      photoUrl: "/rohann.jpg"  
-    },
-    { 
-      name: "Gunjan Shivshara", 
-      role: "Frontend Developer",
-      photoUrl: "/sohamm.jpg"  
-    }
-  ];
+  
 
   return (
     <div className="min-h-screen bg-[rgb(244,237,255)]">
@@ -320,29 +278,7 @@ const CountUp = ({ end }) => {
           </motion.div>
         </motion.div>
         
-        <motion.div className="mb-20" variants={staggerContainer}>
-            <motion.h2
-              className="text-3xl font-bold text-center mb-4"
-              variants={fadeInUp}
-            >
-              Our Team
-            </motion.h2>
-            <motion.p
-              className="text-gray-600 text-center mb-12 max-w-2xl mx-auto"
-              variants={fadeInUp}
-            >
-              Expert professionals dedicated to advancing Heart health technology.
-            </motion.p>
-            <motion.div
-              className="grid md:grid-cols-2 lg:grid-cols-5 gap-8"
-              variants={staggerContainer}
-            >
-              {teamMembers.map((member, index) => (
-                <TeamMember key={index} {...member} />
-              ))}
-            </motion.div>
-          </motion.div>
-
+        
 
         {/* Contact Section */}
         <motion.div className="mb-20" variants={staggerContainer}>
