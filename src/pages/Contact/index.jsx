@@ -4,7 +4,7 @@ const ContactUs = () => {
   return (
     <div className="bg-gray-100 min-h-screen py-12 px-4">
       {/* Header Section */}
-      <header className="bg-gradient-to-r from-blue-600 -red-100 py-16 text-red-700 shadow-md">
+      <header className="bg-gradient-to-r from-blue-600 -red-100 py-16 text-red-500 shadow-md">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}

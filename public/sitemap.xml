@@ -1,40 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Home -->
   <url>
-    <loc>https://heartSathi.online/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://www.heartsathi.com/</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>1.00</priority>
   </url>
 
+  <!-- About -->
   <url>
-    <loc>https://heartSathi.online/about</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.heartsathi.com/about</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/about/our-story</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/about/team</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/about/mission</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
   </url>
 
+  <!-- Prediction -->
   <url>
-    <loc>https://heartSathi.online/predict</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://www.heartsathi.com/prediction</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/prediction/heart-disease-prediction</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/prediction/risk-factors</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/prediction/symptoms</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
   </url>
 
+  <!-- Knowledge -->
   <url>
-    <loc>https://heartSathi.online/contact</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://www.heartsathi.com/knowledge</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/knowledge/videos</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/knowledge/blog</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/knowledge/articles</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/knowledge/research</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
   </url>
 
+  <!-- Treatment -->
   <url>
-    <loc>https://heartSathi.online/login</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://www.heartsathi.com/treatment</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/treatment/medication</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/treatment/therapies</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/treatment/surgical-options</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
   </url>
 
+  <!-- Chat -->
   <url>
-    <loc>https://heartSathi.online/register</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://www.heartsathi.com/chat</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/chat/start-chat</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/chat/faq</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://www.heartsathi.com/contact</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/contact/email</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/contact/phone</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.heartsathi.com/contact/address</loc>
+    <lastmod>2025-04-28</lastmod>
+    <priority>0.64</priority>
   </url>
 
 </urlset>
