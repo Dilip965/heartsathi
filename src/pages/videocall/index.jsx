@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 
 const Chat = () => {
-  const initialMessages = [
+  const [messages, setMessages] = useState([
     { text: "Hi! I'm your heart health assistant. How can I help you today?", sender: "bot" },
-  ];
-
-  const [messages, setMessages] = useState(initialMessages);
+  ]);
   const [input, setInput] = useState('');
 
   const handleSendMessage = (newMessage) => {
@@ -19,6 +17,7 @@ const Chat = () => {
     }, 1000);
   };
 
+  // Simulate a bot response based on user input
   const getBotResponse = (message) => {
     const lowerCaseMessage = message.toLowerCase();
     if (lowerCaseMessage.includes('symptoms')) {
@@ -49,49 +48,37 @@ const Chat = () => {
     }
   };
 
-  const handleReset = () => {
-    setMessages(initialMessages);
-    setInput('');
-  };
-
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-lg p-6 bg-white shadow-lg rounded-lg">
-        <div className="flex flex-col space-y-4 overflow-auto h-96 p-4 border-b border-gray-200">
-          {messages.map((message, index) => (
-            <div key={index} className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}>
-              <div
-                className={`max-w-xs p-3 rounded-lg ${message.sender === "user" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
-              >
-                {message.text}
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-teal-500 p-4">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="flex flex-col h-full">
+          <div className="flex-1 p-4 overflow-auto">
+            {messages.map((message, index) => (
+              <div key={index} className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"} mb-3`}>
+                <div
+                  className={`max-w-xs p-3 rounded-lg ${message.sender === "user" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+                >
+                  {message.text}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        <form onSubmit={handleSubmit} className="flex items-center p-4">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about heart disease or prevention..."
-            className="flex-1 p-2 border border-gray-300 rounded-lg"
-          />
-          <button
-            type="submit"
-            className="ml-2 p-2 bg-blue-500 text-white rounded-lg"
-          >
-            Send
-          </button>
-        </form>
-
-        <div className="flex justify-center mt-4">
-          <button
-            onClick={handleReset}
-            className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-          >
-            Reset Chat
-          </button>
+          <form onSubmit={handleSubmit} className="flex items-center p-4 border-t border-gray-200">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask about heart disease or prevention..."
+              className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              type="submit"
+              className="ml-2 p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              Send
+            </button>
+          </form>
         </div>
       </div>
     </div>
