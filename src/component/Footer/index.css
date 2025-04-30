@@ -1,0 +1,17 @@
+footer {
+    padding: 20px 0; /* Reduce vertical padding */
+    margin: 0;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 20px 40px;
+  }
+  
+  .footer-section {
+    margin: 10px 20px; /* Adjust to reduce vertical spacing */
+  }
+  
