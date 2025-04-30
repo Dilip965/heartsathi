@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 
 const PredictionForm = () => {
   const [formData, setFormData] = useState({
-    age: '',
-    gender: '',
-    chest_pain: '',
-    resting_bp: '',
-    cholesterol: '',
-    fasting_bs: '',
-    rest_ecg: '',
-    max_hr: '',
-    exercise_angina: '',
-    oldpeak: '',
-    slope: '',
-    ca: '',
-    thal: '',
+    Age: '', // Capitalized to match the Flask backend field names
+    Gender: '',
+    ChestPainType: '',
+    RestingBP: '',
+    Cholesterol: '',
+    FastingBS: '',
+    RestECG: '',
+    MaxHR: '',
+    ExerciseAngina: '',
+    Oldpeak: '',
+    Slope: '',
+    CA: '',
+    Thal: '',
   });
 
   const [prediction, setPrediction] = useState('');
@@ -35,13 +35,31 @@ const PredictionForm = () => {
     setError('');
     setPrediction('');
 
+    // Convert all form data values to numbers (important for correct API usage)
+    const formattedData = {
+      ...formData,
+      Age: Number(formData.Age),
+      Gender: Number(formData.Gender),
+      ChestPainType: Number(formData.ChestPainType),
+      RestingBP: Number(formData.RestingBP),
+      Cholesterol: Number(formData.Cholesterol),
+      FastingBS: Number(formData.FastingBS),
+      RestECG: Number(formData.RestECG),
+      MaxHR: Number(formData.MaxHR),
+      ExerciseAngina: Number(formData.ExerciseAngina),
+      Oldpeak: Number(formData.Oldpeak),
+      Slope: Number(formData.Slope),
+      CA: Number(formData.CA),
+      Thal: Number(formData.Thal),
+    };
+
     try {
-      const response = await fetch('https://backend-1-idye.onrender.com/predict', {
+      const response = await fetch('https://heartsathi-backend.onrender.com/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formattedData),
       });
 
       const data = await response.json();
@@ -70,7 +88,7 @@ const PredictionForm = () => {
                 <input
                   id={key}
                   type="number"
-                  name={key}
+                  name={key} // Use the capitalized keys
                   value={formData[key]}
                   onChange={handleChange}
                   className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -88,9 +106,51 @@ const PredictionForm = () => {
           </button>
         </form>
 
-        {prediction && <h3 className="mt-4 text-xl text-green-600 text-center">Prediction: {prediction}</h3>}
-        {error && <h3 className="mt-4 text-xl text-red-600 text-center">Error: {error}</h3>}
+        {prediction !== '' && (
+  <div className="mt-6 text-xl text-center p-4 rounded-md shadow-md">
+    {prediction === 0 && (
+      <div className="text-green-600 bg-green-100 p-4 rounded-lg">
+        <p className="text-2xl font-bold">✅ Low Risk</p>
+        <p>You are likely <strong>not at risk</strong> of heart disease. Keep up the healthy lifestyle! 🎉</p>
       </div>
+    )}
+    {prediction === 1 && (
+      <div className="text-yellow-700 bg-yellow-100 p-4 rounded-lg">
+        <p className="text-2xl font-bold">⚠️ Mild Risk</p>
+        <p>There is a <strong>mild risk</strong> of heart disease. Consider regular checkups and a healthy diet. 🩺</p>
+      </div>
+    )}
+    {prediction === 2 && (
+      <div className="text-orange-700 bg-orange-100 p-4 rounded-lg">
+        <p className="text-2xl font-bold">🟠 Moderate Risk</p>
+        <p>There is a <strong>moderate risk</strong> of heart disease. Please consult a doctor. ⚠️</p>
+      </div>
+    )}
+    {prediction === 3 && (
+      <div className="text-red-700 bg-red-100 p-4 rounded-lg">
+        <p className="text-2xl font-bold">🚨 High Risk</p>
+        <p>There is a <strong>high risk</strong> of heart disease. Medical attention is recommended. ❗</p>
+      </div>
+    )}
+    {prediction === 4 && (
+      <div className="text-red-800 bg-red-200 p-4 rounded-lg">
+        <p className="text-2xl font-bold">🛑 Very High Risk</p>
+        <p>There is a <strong>very high risk</strong> of heart disease. Seek urgent medical care immediately. 🚑</p>
+      </div>
+    )}
+  </div>
+)}
+  
+  
+          {error && (
+            <div className="mt-4 text-red-600 text-center p-4 rounded-md shadow-md bg-red-100">
+              <p className="text-lg font-semibold">{error}</p>
+            </div>
+          )}
+      </div>
+
+
+  
     </div>
   );
 };
