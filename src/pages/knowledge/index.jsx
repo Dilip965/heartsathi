@@ -21,7 +21,7 @@ const Knowledge = () => {
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
           Heart Health Knowledge
         </h1>
-        <p className="mt-4 text-lg md:text-xl text-red-800 bg-red-400">
+        <p className="mt-4 text-lg md:text-xl text-black-800 bg-red-400">
           Learn about heart disease, prevention, and healthy living
         </p>
       </motion.div>

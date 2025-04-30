@@ -12,7 +12,7 @@ function Home() {
             Predict Your Heart Health with <span className="text-gray-900">AI</span>
           </h1>
           <p className="text-lg text-gray-600">
-            HeartSathi helps you understand your heart risk levels using intelligent, AI-powered analysis. Get insights, test recommendations, and prevention tips in minutes.
+            HeartSathi helps you understand your heart risk levels using intelligent AI-powered analysis. Get insights, test recommendations and prevention tips in minutes.
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
             <Link to="/prediction">
