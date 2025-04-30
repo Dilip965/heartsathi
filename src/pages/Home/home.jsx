@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import heroImage from '../../assets/photo/branding2.png'; // Replace with your actual image path
+import heroImage from '../../assets/photo/branding2.png'; 
+import img1 from '../../assets/photo/one1.jpeg'
+// Replace with your actual image path
 
 function Home() {
   return (
-    <div className="min-h-screen bg-white text-gray-800">
+    <div className="min-h-screen bg-white text-gray-800"
+    >
+      
       {/* Hero Section */}
       <section className="flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-16 py-12">
         <div className="w-full md:w-1/2 text-center md:text-left space-y-6">

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const PredictionForm = () => {
   const [formData, setFormData] = useState({
-    Age: '', // Capitalized to match the Flask backend field names
+    Age: '',
     Gender: '',
     ChestPainType: '',
     RestingBP: '',
@@ -20,7 +20,6 @@ const PredictionForm = () => {
   const [prediction, setPrediction] = useState('');
   const [error, setError] = useState('');
 
-  // Handle form field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -29,13 +28,11 @@ const PredictionForm = () => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setPrediction('');
 
-    // Convert all form data values to numbers (important for correct API usage)
     const formattedData = {
       ...formData,
       Age: Number(formData.Age),
@@ -56,9 +53,7 @@ const PredictionForm = () => {
     try {
       const response = await fetch('https://heartsathi-backend.onrender.com/predict', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formattedData),
       });
 
@@ -74,6 +69,38 @@ const PredictionForm = () => {
     }
   };
 
+  const dropdownOptions = {
+    Gender: [
+      { label: 'Male', value: 1 },
+      { label: 'Female', value: 0 },
+    ],
+    ChestPainType: [
+      { label: 'Typical Angina', value: 0 },
+      { label: 'Atypical Angina', value: 1 },
+      { label: 'Non-anginal Pain', value: 2 },
+      { label: 'Asymptomatic', value: 3 },
+    ],
+    RestECG: [
+      { label: 'Normal', value: 0 },
+      { label: 'ST-T Wave Abnormality', value: 1 },
+      { label: 'Left Ventricular Hypertrophy', value: 2 },
+    ],
+    ExerciseAngina: [
+      { label: 'No', value: 0 },
+      { label: 'Yes', value: 1 },
+    ],
+    Slope: [
+      { label: 'Upsloping', value: 0 },
+      { label: 'Flat', value: 1 },
+      { label: 'Downsloping', value: 2 },
+    ],
+    Thal: [
+      { label: 'Normal', value: 1 },
+      { label: 'Fixed Defect', value: 2 },
+      { label: 'Reversible Defect', value: 3 },
+    ],
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 py-8 px-4">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
@@ -85,15 +112,33 @@ const PredictionForm = () => {
                 <label htmlFor={key} className="text-sm font-medium text-gray-600 capitalize mb-2">
                   {key.replace('_', ' ')}
                 </label>
-                <input
-                  id={key}
-                  type="number"
-                  name={key} // Use the capitalized keys
-                  value={formData[key]}
-                  onChange={handleChange}
-                  className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  required
-                />
+                {dropdownOptions[key] ? (
+                  <select
+                    id={key}
+                    name={key}
+                    value={formData[key]}
+                    onChange={handleChange}
+                    className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    required
+                  >
+                    <option value="">Select {key}</option>
+                    {dropdownOptions[key].map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <input
+                    id={key}
+                    type="number"
+                    name={key}
+                    value={formData[key]}
+                    onChange={handleChange}
+                    className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    required
+                  />
+                )}
               </div>
             ))}
           </div>
@@ -107,50 +152,46 @@ const PredictionForm = () => {
         </form>
 
         {prediction !== '' && (
-  <div className="mt-6 text-xl text-center p-4 rounded-md shadow-md">
-    {prediction === 0 && (
-      <div className="text-green-600 bg-green-100 p-4 rounded-lg">
-        <p className="text-2xl font-bold">✅ Low Risk</p>
-        <p>You are likely <strong>not at risk</strong> of heart disease. Keep up the healthy lifestyle! 🎉</p>
-      </div>
-    )}
-    {prediction === 1 && (
-      <div className="text-yellow-700 bg-yellow-100 p-4 rounded-lg">
-        <p className="text-2xl font-bold">⚠️ Mild Risk</p>
-        <p>There is a <strong>mild risk</strong> of heart disease. Consider regular checkups and a healthy diet. 🩺</p>
-      </div>
-    )}
-    {prediction === 2 && (
-      <div className="text-orange-700 bg-orange-100 p-4 rounded-lg">
-        <p className="text-2xl font-bold">🟠 Moderate Risk</p>
-        <p>There is a <strong>moderate risk</strong> of heart disease. Please consult a doctor. ⚠️</p>
-      </div>
-    )}
-    {prediction === 3 && (
-      <div className="text-red-700 bg-red-100 p-4 rounded-lg">
-        <p className="text-2xl font-bold">🚨 High Risk</p>
-        <p>There is a <strong>high risk</strong> of heart disease. Medical attention is recommended. ❗</p>
-      </div>
-    )}
-    {prediction === 4 && (
-      <div className="text-red-800 bg-red-200 p-4 rounded-lg">
-        <p className="text-2xl font-bold">🛑 Very High Risk</p>
-        <p>There is a <strong>very high risk</strong> of heart disease. Seek urgent medical care immediately. 🚑</p>
-      </div>
-    )}
-  </div>
-)}
-  
-  
-          {error && (
-            <div className="mt-4 text-red-600 text-center p-4 rounded-md shadow-md bg-red-100">
-              <p className="text-lg font-semibold">{error}</p>
-            </div>
-          )}
-      </div>
+          <div className="mt-6 text-xl text-center p-4 rounded-md shadow-md">
+            {prediction === 0 && (
+              <div className="text-green-600 bg-green-100 p-4 rounded-lg">
+                <p className="text-2xl font-bold">✅ Low Risk</p>
+                <p>You are likely <strong>not at risk</strong> of heart disease. Keep up the healthy lifestyle! 🎉</p>
+              </div>
+            )}
+            {prediction === 1 && (
+              <div className="text-yellow-700 bg-yellow-100 p-4 rounded-lg">
+                <p className="text-2xl font-bold">⚠️ Mild Risk</p>
+                <p>There is a <strong>mild risk</strong> of heart disease. Consider regular checkups and a healthy diet. 🩺</p>
+              </div>
+            )}
+            {prediction === 2 && (
+              <div className="text-orange-700 bg-orange-100 p-4 rounded-lg">
+                <p className="text-2xl font-bold">🟠 Moderate Risk</p>
+                <p>There is a <strong>moderate risk</strong> of heart disease. Please consult a doctor. ⚠️</p>
+              </div>
+            )}
+            {prediction === 3 && (
+              <div className="text-red-700 bg-red-100 p-4 rounded-lg">
+                <p className="text-2xl font-bold">🚨 High Risk</p>
+                <p>There is a <strong>high risk</strong> of heart disease. Medical attention is recommended. ❗</p>
+              </div>
+            )}
+            {prediction === 4 && (
+              <div className="text-red-800 bg-red-200 p-4 rounded-lg">
+                <p className="text-2xl font-bold">🛑 Very High Risk</p>
+                <p>There is a <strong>very high risk</strong> of heart disease. Seek urgent medical care immediately. 🚑</p>
+              </div>
+            )}
+          </div>
+        )}
 
-
-  
+        {error && (
+          <div className="mt-4 text-red-600 text-center p-4 rounded-md shadow-md bg-red-100">
+            <p className="text-lg font-semibold">{error}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

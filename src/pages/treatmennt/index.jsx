@@ -33,7 +33,7 @@ const treatments = [
     image: "https://ars.els-cdn.com/content/image/1-s2.0-S153204641500074X-gr2.jpg",
   },
   {
-    title: "Implantable Devices",
+    title: "Iot Devices",
     description: "Pacemakers and defibrillators support irregular heart rhythms.",
     details: "Pacemakers send electrical pulses to prompt the heart to beat regularly. Defibrillators deliver shocks when dangerous rhythms are detected.",
     image: "https://ars.els-cdn.com/content/image/1-s2.0-S153204641500074X-gr2.jpg",
@@ -46,12 +46,12 @@ const TreatmentCard = ({ treatment }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.03 }}
-      className="p-6 bg-white rounded-2xl shadow-xl border border-gray-100 flex flex-col items-center text-center"
+      className="p-6  rounded-2xl shadow-xl border border-gray-100 flex flex-col items-center text-center"
     >
       <img src={treatment.image} alt={treatment.title} className="w-20 h-20 mb-4" />
       <h2 className="text-xl font-semibold text-red-700">{treatment.title}</h2>
       <p className="mt-2 text-gray-600">{treatment.description}</p>
-      {expanded && <p className="mt-2 text-sm text-gray-500">{treatment.details}</p>}
+      {expanded && <p className="mt-2 text-sm text-blue-500">{treatment.details}</p>}
       <button
         onClick={() => setExpanded(!expanded)}
         className="mt-4 px-4 py-2 text-sm font-medium bg-red-600 text-white rounded-full hover:bg-indigo-700 transition"
@@ -64,7 +64,7 @@ const TreatmentCard = ({ treatment }) => {
 
 const Treatment = () => {
   return (
-    <div className="min-h-screen px-6 py-10 bg-gradient-to-br from-red-50 to-white">
+    <div className="min-h-screen px-6 py-10  from-red-50 to-white">
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -72,7 +72,7 @@ const Treatment = () => {
         className="text-center mb-12"
       >
         <h1 className="text-4xl font-bold text-red-700">Heart Disease Treatments</h1>
-        <p className="text-gray-600 mt-2 text-lg max-w-2xl mx-auto">
+        <p className=" mt-2 text-lg max-w-2xl mx-auto">
           Discover the most effective treatments available for managing and preventing heart-related conditions.
         </p>
       </motion.div>
