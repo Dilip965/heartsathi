@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import PredictionForm from "./ok";
+import HeartDiseasePrediction from "./ok";
 
 function Prediction(){
 
@@ -19,8 +19,8 @@ function Prediction(){
       <p className="mt-4 text-gray-600 text-lg max-w-2xl mx-auto">
         Enter your health information to predict the likelihood of heart disease and take proactive steps.
       </p>
-    </motion.div>
-<PredictionForm/>
+    </motion.div> 
+    <HeartDiseasePrediction/>
         </>
     )
 }
