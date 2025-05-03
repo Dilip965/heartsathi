@@ -1,194 +1,123 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import axios from "axios";
 
-const PredictionForm = () => {
+const HeartPredictionForm = () => {
   const [formData, setFormData] = useState({
-    Age: '',
-    Gender: '',
-    ChestPainType: '',
-    RestingBP: '',
-    Cholesterol: '',
-    FastingBS: '',
-    RestECG: '',
-    MaxHR: '',
-    ExerciseAngina: '',
-    Oldpeak: '',
-    Slope: '',
-    CA: '',
-    Thal: '',
+    Age: "",
+    Gender: "",
+    ChestPainType: "",
+    RestingBP: "",
+    Cholesterol: "",
+    FastingBS: "",
+    RestECG: "",
+    MaxHR: "",
+    ExerciseAngina: "",
+    Oldpeak: "",
+    Slope: "",
+    CA: "",
+    Thal: "",
   });
 
-  const [prediction, setPrediction] = useState('');
-  const [error, setError] = useState('');
+  const [result, setResult] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    setPrediction('');
-
-    const formattedData = {
-      ...formData,
-      Age: Number(formData.Age),
-      Gender: Number(formData.Gender),
-      ChestPainType: Number(formData.ChestPainType),
-      RestingBP: Number(formData.RestingBP),
-      Cholesterol: Number(formData.Cholesterol),
-      FastingBS: Number(formData.FastingBS),
-      RestECG: Number(formData.RestECG),
-      MaxHR: Number(formData.MaxHR),
-      ExerciseAngina: Number(formData.ExerciseAngina),
-      Oldpeak: Number(formData.Oldpeak),
-      Slope: Number(formData.Slope),
-      CA: Number(formData.CA),
-      Thal: Number(formData.Thal),
-    };
-
+    setLoading(true);
     try {
-      const response = await fetch('https://heartsathi-backend.onrender.com/predict', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formattedData),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setPrediction(data.prediction);
-      } else {
-        setError(data.error || 'Something went wrong');
-      }
-    } catch (err) {
-      setError('Error occurred while communicating with the server.');
+      const response = await axios.post("https://heartsathi-backend.onrender.com/predict", formData);
+      setResult(response.data);
+    } catch (error) {
+      console.error("Prediction failed:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const dropdownOptions = {
-    Gender: [
-      { label: 'Male', value: 1 },
-      { label: 'Female', value: 0 },
-    ],
-    ChestPainType: [
-      { label: 'Typical Angina', value: 0 },
-      { label: 'Atypical Angina', value: 1 },
-      { label: 'Non-anginal Pain', value: 2 },
-      { label: 'Asymptomatic', value: 3 },
-    ],
-    RestECG: [
-      { label: 'Normal', value: 0 },
-      { label: 'ST-T Wave Abnormality', value: 1 },
-      { label: 'Left Ventricular Hypertrophy', value: 2 },
-    ],
-    ExerciseAngina: [
-      { label: 'No', value: 0 },
-      { label: 'Yes', value: 1 },
-    ],
-    Slope: [
-      { label: 'Upsloping', value: 0 },
-      { label: 'Flat', value: 1 },
-      { label: 'Downsloping', value: 2 },
-    ],
-    Thal: [
-      { label: 'Normal', value: 1 },
-      { label: 'Fixed Defect', value: 2 },
-      { label: 'Reversible Defect', value: 3 },
-    ],
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 py-8 px-4">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
-        <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">Heart Disease Prediction</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {Object.keys(formData).map((key) => (
-              <div key={key} className="flex flex-col">
-                <label htmlFor={key} className="text-sm font-medium text-gray-600 capitalize mb-2">
-                  {key.replace('_', ' ')}
-                </label>
-                {dropdownOptions[key] ? (
-                  <select
-                    id={key}
-                    name={key}
-                    value={formData[key]}
-                    onChange={handleChange}
-                    className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    required
-                  >
-                    <option value="">Select {key}</option>
-                    {dropdownOptions[key].map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </select>
-                ) : (
-                  <input
-                    id={key}
-                    type="number"
-                    name={key}
-                    value={formData[key]}
-                    onChange={handleChange}
-                    className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    required
-                  />
-                )}
-              </div>
-            ))}
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <div className="bg-white shadow-xl rounded-xl w-full max-w-3xl p-8">
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+          Heart Disease Predictor
+        </h2>
+
+        <form className="grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleSubmit}>
+          <input
+            type="number"
+            name="Age"
+            placeholder="Age"
+            value={formData.Age}
+            onChange={handleChange}
+            className="input-style"
+            required
+          />
+
+          <div className="flex items-center space-x-4">
+            <label className="text-gray-700">Gender:</label>
+            <label><input type="radio" name="Gender" value="M" onChange={handleChange} required /> Male</label>
+            <label><input type="radio" name="Gender" value="F" onChange={handleChange} required /> Female</label>
           </div>
+
+          <select name="ChestPainType" value={formData.ChestPainType} onChange={handleChange} required className="input-style">
+            <option value="">Chest Pain Type</option>
+            <option value="TA">Typical Angina</option>
+            <option value="ATA">Atypical Angina</option>
+            <option value="NAP">Non-Anginal Pain</option>
+            <option value="ASY">Asymptomatic</option>
+          </select>
+
+          <input type="number" name="RestingBP" placeholder="Resting BP" value={formData.RestingBP} onChange={handleChange} className="input-style" required />
+          <input type="number" name="Cholesterol" placeholder="Cholesterol" value={formData.Cholesterol} onChange={handleChange} className="input-style" required />
+          <input type="number" name="FastingBS" placeholder="Fasting BS (1/0)" value={formData.FastingBS} onChange={handleChange} className="input-style" required />
+          <select name="RestECG" value={formData.RestECG} onChange={handleChange} className="input-style" required>
+            <option value="">Rest ECG</option>
+            <option value="0">Normal</option>
+            <option value="1">ST-T Abnormality</option>
+            <option value="2">Left Ventricular Hypertrophy</option>
+          </select>
+          <input type="number" name="MaxHR" placeholder="Max HR" value={formData.MaxHR} onChange={handleChange} className="input-style" required />
+          
+          <div className="flex items-center space-x-4">
+            <label className="text-gray-700">Exercise Angina:</label>
+            <label><input type="radio" name="ExerciseAngina" value="Y" onChange={handleChange} required /> Yes</label>
+            <label><input type="radio" name="ExerciseAngina" value="N" onChange={handleChange} required /> No</label>
+          </div>
+
+          <input type="number" step="0.1" name="Oldpeak" placeholder="Oldpeak" value={formData.Oldpeak} onChange={handleChange} className="input-style" required />
+          <select name="Slope" value={formData.Slope} onChange={handleChange} className="input-style" required>
+            <option value="">Slope</option>
+            <option value="0">Upsloping</option>
+            <option value="1">Flat</option>
+            <option value="2">Downsloping</option>
+          </select>
+          <input type="number" name="CA" placeholder="Number of Major Vessels (0–3)" value={formData.CA} onChange={handleChange} className="input-style" required />
+          <select name="Thal" value={formData.Thal} onChange={handleChange} className="input-style" required>
+            <option value="">Thal</option>
+            <option value="0">Normal</option>
+            <option value="1">Fixed Defect</option>
+            <option value="2">Reversible Defect</option>
+          </select>
 
           <button
             type="submit"
-            className="w-full py-3 bg-indigo-600 text-white rounded-md text-lg font-semibold hover:bg-indigo-700 transition duration-200"
+            className="col-span-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg mt-4"
+            disabled={loading}
           >
-            Predict
+            {loading ? "Predicting..." : "Predict"}
           </button>
         </form>
 
-        {prediction !== '' && (
-          <div className="mt-6 text-xl text-center p-4 rounded-md shadow-md">
-            {prediction === 0 && (
-              <div className="text-green-600 bg-green-100 p-4 rounded-lg">
-                <p className="text-2xl font-bold">✅ Low Risk</p>
-                <p>You are likely <strong>not at risk</strong> of heart disease. Keep up the healthy lifestyle! 🎉</p>
-              </div>
-            )}
-            {prediction === 1 && (
-              <div className="text-yellow-700 bg-yellow-100 p-4 rounded-lg">
-                <p className="text-2xl font-bold">⚠️ Mild Risk</p>
-                <p>There is a <strong>mild risk</strong> of heart disease. Consider regular checkups and a healthy diet. 🩺</p>
-              </div>
-            )}
-            {prediction === 2 && (
-              <div className="text-orange-700 bg-orange-100 p-4 rounded-lg">
-                <p className="text-2xl font-bold">🟠 Moderate Risk</p>
-                <p>There is a <strong>moderate risk</strong> of heart disease. Please consult a doctor. ⚠️</p>
-              </div>
-            )}
-            {prediction === 3 && (
-              <div className="text-red-700 bg-red-100 p-4 rounded-lg">
-                <p className="text-2xl font-bold">🚨 High Risk</p>
-                <p>There is a <strong>high risk</strong> of heart disease. Medical attention is recommended. ❗</p>
-              </div>
-            )}
-            {prediction === 4 && (
-              <div className="text-red-800 bg-red-200 p-4 rounded-lg">
-                <p className="text-2xl font-bold">🛑 Very High Risk</p>
-                <p>There is a <strong>very high risk</strong> of heart disease. Seek urgent medical care immediately. 🚑</p>
-              </div>
-            )}
-          </div>
-        )}
-
-        {error && (
-          <div className="mt-4 text-red-600 text-center p-4 rounded-md shadow-md bg-red-100">
-            <p className="text-lg font-semibold">{error}</p>
+        {result && (
+          <div className="mt-6 p-4 border rounded-lg bg-green-100 text-green-800">
+            <h4 className="font-semibold text-lg">Prediction Result</h4>
+            <p><strong>Prediction:</strong> {result.prediction === 1 ? "Heart Disease" : "No Heart Disease"}</p>
+            <p><strong>Probability:</strong> {(result.probability * 100).toFixed(2)}%</p>
+            <p><strong>Statement:</strong> {result.statement}</p>
           </div>
         )}
       </div>
@@ -196,4 +125,4 @@ const PredictionForm = () => {
   );
 };
 
-export default PredictionForm;
+export default HeartPredictionForm;
