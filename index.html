@@ -1,114 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/fav.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="google-site-verification" content="a7vpNr73fhjj0x-zQ7aXa5fqQVE_SaXZETVgzm8YxCk" />
-    <title>HeartSathi | Heart Disease Prediction & Health Check AI</title>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/fav.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="a7vpNr73fhjj0x-zQ7aXa5fqQVE_SaXZETVgzm8YxCk" />
+  <title>HeartSathi | Heart Disease Prediction & Health Check AI</title>
 
-    <!-- SEO -->
-    <meta name="description" content="HeartSathi is your AI-powered partner for early heart disease prediction, health insights, and test recommendations." />
-    <meta name="keywords" content="Heart Disease Prediction, Heart Health, AI, Cardiology Tools, Heart Risk Calculator" />
-    <meta name="author" content="HeartSathi Team" />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#e63946" />
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="HeartSathi is your AI-powered partner for early heart disease prediction, health insights, and test recommendations." />
+  <meta name="keywords" content="Heart Sathi, Heart Disease Prediction, Heart Health, AI, Cardiology Tools, Heart Risk Calculator, AI Heart Check, Prevent Heart Disease" />
+  <meta name="author" content="HeartSathi Team" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#e63946" />
 
-    <!-- Open Graph and Twitter -->
-    <meta property="og:title" content="HeartSathi | Smart Heart Health Prediction" />
-    <meta property="og:description" content="Get early predictions and insights about your heart health using AI. Free, simple, and accurate." />
-    <meta property="og:image" content="/og-image.jpg" />
-    <meta property="og:url" content="https://heartsathi.online" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="HeartSathi - Predict Your Heart Health Now" />
-    <meta name="twitter:description" content="AI-powered heart disease prediction and test recommender. Know your risk today!" />
-    <meta name="twitter:image" content="/twitter-card.jpg" />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="HeartSathi | Smart Heart Health Prediction" />
+  <meta property="og:description" content="Get early predictions and insights about your heart health using AI. Free, simple, and accurate." />
+  <meta property="og:image" content="/og-image.jpg" />
+  <meta property="og:url" content="https://heartsathi.online" />
+  <meta property="og:type" content="website" />
 
-    <!-- Icons -->
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="HeartSathi - Predict Your Heart Health Now" />
+  <meta name="twitter:description" content="AI-powered heart disease prediction and test recommender. Know your risk today!" />
+  <meta name="twitter:image" content="/twitter-card.jpg" />
 
-    <!-- Sitemap Reference (for SEO) -->
-    <meta name="sitemap" content="https://heartsathi.online/sitemap.xml" />
+  <!-- Sitemap -->
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 
-    <!-- Vite -->
-    <script type="module" src="/src/main.jsx"></script>
+  <!-- Icons -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Hide Google Translate banner and style dropdown -->
-    <style>
-        /* Hide top Google Translate banner */
-        .goog-te-banner-frame.skiptranslate {
-            display: none !important;
-        }
-        body {
-            top: 0px !important;
-        }
+  <!-- Vite / React Entry -->
+  <script type="module" src="/src/main.jsx"></script>
 
-        /* Hide Google logo and spacing */
-        .goog-logo-link,
-        .goog-te-gadget span {
-            display: none !important;
-        }
-
-        /* Customize dropdown */
-        #google_translate_element {
-            position: fixed;
-            top: 70px;
-            right: 12px;
-            z-index: 9999;
-            background-color: white;
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 14px;
-            font-family: Arial, sans-serif;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Dropdown itself */
-        #google_translate_element select {
-            padding: 5px 8px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            font-size: 13px;
-            cursor: pointer;
-        }
-    </style>
+  <!-- Google Translate Styling -->
+  <style>
+    .goog-te-banner-frame.skiptranslate {
+      display: none !important;
+    }
+    body {
+      top: 0px !important;
+    }
+    .goog-logo-link, .goog-te-gadget span {
+      display: none !important;
+    }
+    #google_translate_element {
+      position: fixed;
+      top: 70px;
+      right: 12px;
+      z-index: 9999;
+      background-color: white;
+      padding: 5px 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    #google_translate_element select {
+      padding: 5px 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 13px;
+      cursor: pointer;
+    }
+  </style>
 </head>
-
 <body>
-    <!-- Language Selector -->
-    <div id="google_translate_element"></div>
+  <!-- Language Selector -->
+  <div id="google_translate_element"></div>
 
-    <!-- React Root -->
-    <div id="root"></div>
+  <!-- React Mount Point -->
+  <div id="root"></div>
 
-    <!-- Google Translate API -->
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,hi,bn,mr,ta,te,kn,ml,gu,pa,ur,as,or',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    </script>
-    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <!-- Include your sitemap location in robots.txt -->
-    <script>
-        const robotsTxtContent = `
-            User-agent: *
-            Disallow: /private/
-            Sitemap: https://heartsathi.online/sitemap.xml
-        `;
-        // This code is just a reference for adding the sitemap directive in your robots.txt file.
-        console.log('Add this to your robots.txt file:');
-        console.log(robotsTxtContent);
-    </script>
-
+  <!-- Google Translate Script -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,hi,bn,mr,ta,te,kn,ml,gu,pa,ur,as,or',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
-
 </html>
