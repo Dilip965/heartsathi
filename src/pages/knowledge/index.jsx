@@ -9,7 +9,7 @@ const Knowledge = () => {
   };
 
   return (
-    <div className="min-h-screen bg-red-400">
+    <div className="min-h-screen bg-red-50">
       {/* Header */}
       <header className="bg-gradient-to-r from-blue-600 to-red-700 py-16 text-red shadow-md">
       <motion.div

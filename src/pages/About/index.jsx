@@ -1,6 +1,8 @@
 
 import React, { useState,useEffect } from 'react';
 import { motion,useAnimation } from 'framer-motion';
+import team1 from '../../assets/team/teamp.jpeg';
+
 import { 
   Brain, 
   BarChart, 
@@ -148,6 +150,38 @@ const CountUp = ({ end }) => {
 
   return (
     <div className="min-h-screen bg-[rgb(244,237,255)]">
+
+<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-100 flex items-center justify-center p-6">
+      <motion.div
+        initial={{ opacity: 0, y: 30, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="bg-white rounded-3xl shadow-xl p-8 max-w-4xl w-full text-center"
+      >
+   <motion.h1
+  initial={{ opacity: 0, y: -20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
+  className="text-5xl font-extrabold text-center text-red-600 bg-gradient-to-br mb-10 from-red-200 to-pink-100 p-6 rounded-full shadow-xl max-w-3xl mx-auto"
+>
+  Team Behind Heart Sathi — Caring for Your Heart
+</motion.h1>
+
+
+        <motion.img
+          src={team1}
+          alt="Heart Sathi Team"
+          className="w-full rounded-xl shadow-lg object-cover hover:scale-105 transition-transform duration-300"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        />
+
+        <p className="mt-6 text-gray-600 text-lg">
+          Meet the passionate team behind <span className="font-semibold text-red-600">Heart Sathi</span> — committed to advancing mental and heart health with technology and care.
+        </p>
+      </motion.div>
+    </div>
       <motion.div 
         className="w-full max-w-7xl mx-auto px-6 md:px-12 py-16"
         initial="initial"
@@ -160,7 +194,7 @@ const CountUp = ({ end }) => {
           variants={fadeInUp}
         >
           <motion.div 
-            className="inline-block p-2 px-4 bg-blue-100 rounded-full text-red-300 font-medium mb-4"
+            className="inline-block p-2 px-4 bg-red-50 rounded-full text-red-300 font-medium mb-4"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -336,6 +370,11 @@ const CountUp = ({ end }) => {
           </motion.p>
         </motion.div>
       </motion.div>
+
+      {/* <h1>Group Photo</h1>
+      <img src={team1} alt="img1" /> */}
+
+
     </div>
   );
 };
