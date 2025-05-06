@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/fav.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,51 +30,55 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
+    <!-- Sitemap Reference (for SEO) -->
+    <meta name="sitemap" content="https://heartsathi.online/sitemap.xml" />
+
     <!-- Vite -->
     <script type="module" src="/src/main.jsx"></script>
 
     <!-- Hide Google Translate banner and style dropdown -->
     <style>
-      /* Hide top Google Translate banner */
-      .goog-te-banner-frame.skiptranslate {
-        display: none !important;
-      }
-      body {
-        top: 0px !important;
-      }
+        /* Hide top Google Translate banner */
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        }
+        body {
+            top: 0px !important;
+        }
 
-      /* Hide Google logo and spacing */
-      .goog-logo-link, .goog-te-gadget span {
-        display: none !important;
-      }
+        /* Hide Google logo and spacing */
+        .goog-logo-link,
+        .goog-te-gadget span {
+            display: none !important;
+        }
 
-      /* Customize dropdown */
-      #google_translate_element {
-        position: fixed;
-        top: 70px;
-        right: 12px;
-        z-index: 9999;
-        background-color: white;
-        padding: 5px 10px;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        font-size: 14px;
-        font-family: Arial, sans-serif;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      }
+        /* Customize dropdown */
+        #google_translate_element {
+            position: fixed;
+            top: 70px;
+            right: 12px;
+            z-index: 9999;
+            background-color: white;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-      /* Dropdown itself */
-      #google_translate_element select {
-        padding: 5px 8px;
-        border-radius: 4px;
-        border: 1px solid #ccc;
-        font-size: 13px;
-        cursor: pointer;
-      }
+        /* Dropdown itself */
+        #google_translate_element select {
+            padding: 5px 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 13px;
+            cursor: pointer;
+        }
     </style>
-  </head>
+</head>
 
-  <body>
+<body>
     <!-- Language Selector -->
     <div id="google_translate_element"></div>
 
@@ -82,14 +87,28 @@
 
     <!-- Google Translate API -->
     <script type="text/javascript">
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-          pageLanguage: 'en',
-          includedLanguages: 'en,hi,bn,mr,ta,te,kn,ml,gu,pa,ur,as,or',
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-        }, 'google_translate_element');
-      }
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi,bn,mr,ta,te,kn,ml,gu,pa,ur,as,or',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
     </script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-  </body>
+
+    <!-- Include your sitemap location in robots.txt -->
+    <script>
+        const robotsTxtContent = `
+            User-agent: *
+            Disallow: /private/
+            Sitemap: https://heartsathi.online/sitemap.xml
+        `;
+        // This code is just a reference for adding the sitemap directive in your robots.txt file.
+        console.log('Add this to your robots.txt file:');
+        console.log(robotsTxtContent);
+    </script>
+
+</body>
+
 </html>
